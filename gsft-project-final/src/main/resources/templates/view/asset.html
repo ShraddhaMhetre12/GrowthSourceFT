@@ -1,0 +1,420 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>GrowthSource FT</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div align="center">
+
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h1>Asset List</h1>
+			<br>
+			<form action="#" th:action="@{/submitAsset}"
+				th:object="${assetMaster}" method="post">
+				<table class="table table-hover table table-striped"
+					style="background-color: rgb(161, 224, 243); padding: 5px; border-collapse: collapse">
+					<thead>
+						<tr style="hight: 3em">
+							<th></th>
+							<th>Assets</th>
+							<th>Value (Rs)</th>
+							<th>Rate (%)</th>
+							<th>LVT (%)</th>
+							<th>Tenure (yr)</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Cash,Bank Balnce,FD</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Securities and MFs</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Gold and Jewellery</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Business Loan</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Row Material</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Machinery and Equipment</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Commercial Vehicle</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Commercial RE</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Warehouses</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Factory RE</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Land</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td><input type="checkbox" th:field="*{assetId}"
+								th:value="2" style="width: 20px; height: 20px;" /></td>
+							<td>Residential RE</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="Rs" type="text" disabled th:field="*{value}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{rate}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control " placeholder="%"
+										type="text" disabled th:field="*{ltv}" />
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input style="width: 2em" class="form-control "
+										placeholder="yr" type="text" disabled th:field="*{tenure}" />
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<br> <br> <input type="submit" value="Submit" id="btn"
+					class="btn btn-warning" style="width: 20em; hight: 20em">
+			</form>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</body>
+
+<script>
+ 
+        $('tr td:first-child input[type="checkbox"]').click(function () {
+            //enable/disable all except checkboxes, based on the row is checked or not
+            $(this).closest('tr').find(":input:not(:first)").attr('disabled', !this.checked);
+        });
+    </script>
+</html>
