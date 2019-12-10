@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gsft.AssetCreationDto;
 import com.gsft.model.AssetTable;
 import com.gsft.service.AssetTableService;
 
@@ -20,8 +21,8 @@ public class AssetMasterRouteController {
 	
 	@RequestMapping("/")
 	public String asset(Model model) {
-		model.addAttribute("assetTable", new AssetTable());
-		return "view/asset";
+		model.addAttribute("assetTable", new AssetCreationDto());
+		return "view/submitasset";
 		
 	}
 	
@@ -33,7 +34,8 @@ public class AssetMasterRouteController {
 	}
 	
 	@RequestMapping(value="/submitAsset", method=RequestMethod.POST)
-	public String submitAsset(Model model,@ModelAttribute AssetTable assetTable) {
+	public String submitAsset(Model model,@ModelAttribute AssetCreationDto assetTable) {
+		System.out.println(assetTable.getAsset().size());
 		service.saveData(assetTable);
 		model.addAttribute("success",new Boolean(true));
 		return "redirect:/";
