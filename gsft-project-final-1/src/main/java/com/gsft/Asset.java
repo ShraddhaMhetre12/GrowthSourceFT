@@ -2,16 +2,16 @@ package com.gsft;
 
 public class Asset {
 
-	private int assetid;
+	private Long assetid;
 	private String assetname;
-	private long value;
-	private float rate;
-	private float ltv;
-	private int tenure;
-	public int getAssetid() {
+	private Long value;
+	private Double rate;
+	private Double ltv;
+	private Long tenure;
+	public Long getAssetid() {
 		return assetid;
 	}
-	public void setAssetid(int assetid) {
+	public void setAssetid(Long assetid) {
 		this.assetid = assetid;
 	}
 	public String getAssetname() {
@@ -20,29 +20,31 @@ public class Asset {
 	public void setAssetname(String assetname) {
 		this.assetname = assetname;
 	}
-	public long getValue() {
+	public Long getValue() {
 		return value;
 	}
-	public void setValue(long value) {
+	public void setValue(Long value) {
 		this.value = value;
 	}
-	public float getRate() {
+	public Double getRate() {
 		return rate;
 	}
-	public void setRate(float rate) {
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
-	public float getLtv() {
+	public Double getLtv() {
 		return ltv;
 	}
-	public void setLtv(float ltv) {
+	public void setLtv(Double ltv) {
 		this.ltv = ltv;
 	}
-	public int getTenure() {
+	public Long getTenure() {
 		return tenure;
 	}
-	public void setTenure(int tenure) {
+	public void setTenure(Long tenure) {
 		this.tenure = tenure;
 	}
+	
+	
 	
 }

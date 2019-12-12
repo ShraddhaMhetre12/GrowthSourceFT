@@ -5,6 +5,7 @@ import java.util.List;
 public class AssetCreationDto {
 
 	List<Asset> asset;
+	
 
 	public List<Asset> getAsset() {
 		return asset;
