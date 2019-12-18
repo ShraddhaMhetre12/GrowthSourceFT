@@ -1,12 +1,12 @@
 package com.gsft.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -22,6 +22,7 @@ import com.gsft.model.LoanCompanyMaster;
 import com.gsft.repository.AssetMasterDao;
 import com.gsft.repository.AssetTableDao;
 import com.gsft.repository.CustomerInputDatailsDao;
+import com.gsft.repository.CustomerInputSummaryDao;
 import com.gsft.repository.LoanMasterDao;
 
 @Service
@@ -38,6 +39,9 @@ public class AssetTableService {
 	
 	@Autowired
 	private LoanMasterDao loanMasterDao;
+	
+	@Autowired
+	private CustomerInputSummaryDao customerInputSummaryDao;
 
 	@Transactional
 	public CustomerInputSummary saveData(AssetCreationDto assetTableBo) {
@@ -83,7 +87,7 @@ public class AssetTableService {
 	
 	public Map<String, List<LoanCompanyMaster>> getLoanCompanyMaster()
 	{
-		List<LoanCompanyMaster> loanCompanyMasterList=loanMasterDao.findAll();
+		List<LoanCompanyMaster> loanCompanyMasterList=loanMasterDao.findAll();;
 		
 		Map<String, List<LoanCompanyMaster>> result =
 				loanCompanyMasterList.stream().collect(
@@ -109,6 +113,35 @@ public class AssetTableService {
                 );
 
 		return result;
+		
+	}
+	
+	public Map<String, List<LoanCompanyMaster>> getLoanCompanyMasterForCustomerInput(List<CustomerInputDetails> customerInputDetailsList)
+	{
+		
+		
+		List<AssetMaster> assetMasterList = new ArrayList<>();
+		for (CustomerInputDetails customerInputDetails : customerInputDetailsList) {
+			assetMasterList.add(customerInputDetails.getAssetId());
+		}
+
+		List<LoanCompanyMaster> loanCompanyMasterList=loanMasterDao.findByAssetIdIn(assetMasterList);
+		
+		Map<String, List<LoanCompanyMaster>> result =
+				loanCompanyMasterList.stream().collect(
+                        Collectors.groupingBy(
+                        		LoanCompanyMaster::getEntity
+                        )
+                );
+
+		return result;
+		
+	}
+	
+	public CustomerInputSummary getInputSummaryById(Long summaryId)
+	{
+		Optional<CustomerInputSummary> customerInputSummary=customerInputSummaryDao.findById(summaryId);
+		return customerInputSummary.get();
 		
 	}
 	

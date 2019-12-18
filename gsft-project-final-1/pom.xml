@@ -12,6 +12,7 @@
 	<groupId>com.gsft</groupId>
 	<artifactId>gsft-project-final-1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>gsft-project-final-1</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -57,6 +58,15 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+    </dependency>
 	</dependencies>
 
 	<build>
