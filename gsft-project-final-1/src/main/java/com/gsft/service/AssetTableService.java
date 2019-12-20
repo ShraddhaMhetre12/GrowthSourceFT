@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -43,6 +44,7 @@ public class AssetTableService {
 	@Autowired
 	private CustomerInputSummaryDao customerInputSummaryDao;
 
+	//Insert the multiple recorders into db
 	@Transactional
 	public CustomerInputSummary saveData(AssetCreationDto assetTableBo) {
 		
@@ -145,6 +147,11 @@ public class AssetTableService {
 		
 	}
 	
-	
+	public CustomerInputDetails getInputDetailsBySummaryId(Long summaryId)
+	{
+		List<CustomerInputDetails> customerInputDetailsLst=customerInputDatailsDao.findBySummaryIdOrderByAssetIdAsc(summaryId);
+		
+		return null;
+	}
 	
 }

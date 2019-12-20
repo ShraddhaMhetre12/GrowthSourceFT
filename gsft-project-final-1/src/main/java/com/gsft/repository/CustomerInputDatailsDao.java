@@ -1,5 +1,9 @@
 package com.gsft.repository;
 
+
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gsft.model.CustomerInputDetails;
@@ -9,5 +13,6 @@ public interface CustomerInputDatailsDao extends JpaRepository<CustomerInputDeta
 	
 	
 	CustomerInputSummary findBySummaryId(Long id);
-
+	List<CustomerInputDetails> findBySummaryIdOrderByAssetIdAsc(Long summaryId);
+	
 }

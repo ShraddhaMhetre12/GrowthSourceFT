@@ -42,17 +42,16 @@ public class AssetMasterRouteController {
 
 	}
 
-	@RequestMapping("/NewFile")
+	@RequestMapping("/optimizedCal")
 	public String submitAsset(Model model) {
 		List<CustomerInputDetails> list = service.listAll();
 		model.addAttribute("assetTable", list);
-		return "view/NewFile";
+		return "view/optimizedCal";
 	}
 	
 	@RequestMapping(value = "/submitAsset", method = RequestMethod.POST)
 	public String submitAsset(Model model, @ModelAttribute AssetCreationDto assetTable) {
-		log.debug("submitAsset-->");
-
+		
 		CustomerInputSummary customerSummary = service.saveData(assetTable);
 		customerSummary.getCustomerInputDetails();
 
@@ -62,7 +61,7 @@ public class AssetMasterRouteController {
 		model.addAttribute("assetTable", customerSummary.getCustomerInputDetails());
 		model.addAttribute("loanCompanyMap", loanCompanyMap);
 		model.addAttribute("summaryId", customerSummary.getId());
-		return "view/NewFile";
+		return "view/optimizedCal";
 	}
 
 	@RequestMapping(value = "api/calculate/{id}", method = RequestMethod.POST)
