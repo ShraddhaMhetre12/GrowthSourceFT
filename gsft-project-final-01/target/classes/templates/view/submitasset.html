@@ -1,0 +1,300 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Growth Source Financial Technologies</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color: #00fff;">
+
+
+	<div class="container-fluid" style="background-color: #dedede">
+		<nav class="navbar navbar-default">
+
+			<div class="navbar-header">
+
+				<a class="navbar-brand"><img src="growthsource.png"
+					height="60px" width="190px"> </a>
+			</div>
+			<div>
+				<strong><span id="date"
+					style="float: right; font-size: 20px; color: #0F1036;"></span></strong>
+			</div>
+
+		</nav>
+	</div>
+
+	<br>
+
+	<div align="center" class="options">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+
+			<h3
+				style="font-family: Times New Roman, Times, serif; font-size: 30px;">
+				<strong>Add your Existing Liability</strong>
+			</h3>
+			<br>
+			<form action="#" th:action="@{/submitAsset}"
+				th:object="${assetTable}" method="post" id="submitForm">
+
+				<table class="table table-hover" id="table"
+					style="background-color: #fff; border: 1px solid black;">
+					<thead class="table table-dark">
+
+						<tr height="75px" style="background-color: #00004d;">
+
+							<th style="font-size: 20px;"><strong>Asset</strong></th>
+							<th style="font-size: 20px;"><strong>Asset Value</strong></th>
+							<th style="font-size: 20px;"><strong>Rate(%)</strong></th>
+							<th style="font-size: 20px;"><strong>LTV (%)</strong></th>
+							<th style="font-size: 20px;"><strong>Tenure (Days)</strong></th>
+							<th><button type="button" class="btn btn-success btn-xs add"
+								 id="add" name="add" onclick="table()">+</button></th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<!-- <td><input type="checkbox" th:value="2"
+								style="width: 20px; height: 20px;" /></td> -->
+							<td><select id="asset_0" th:field="*{asset[0].assetname}"
+								class="form-control DropDown" style="width: 14em" name="asset0" required>
+									<option value="0">Select</option>
+									<option value="1">Cash,Bank Balance,FD</option>
+									<option value="2">Securities and MFs</option>
+									<option value="3">Gold and Jewellery</option>
+									<option value="4">Business Loan</option>
+									<option value="5">Row Material</option>
+									<option value="6">Machinery and Equipment</option>
+									<option value="7">Commercial Vehicle</option>
+									<option value="8">Commercial RE</option>
+									<option value="9">Warehouse</option>
+									<option value="10">Factory RE</option>
+									<option value="11">Land</option>
+									<option value="12">Residential RE</option>
+
+
+							</select></td>
+
+							<td><input type="number" id="amt_0"
+								th:field="*{asset[0].value}" class="form-control Value"
+								style="width: 8em" required pattern="^[0-9]*$" ></td>
+
+							<td><input type="number" step=any id="rate_0"
+								th:field="*{asset[0].rate}" class="form-control Rate"
+								style="width: 8em" required pattern="^[0-9]*$" min=0 max=100></td>
+
+							<td><input type="number" id="ltv_0" step=any
+								th:field="*{asset[0].ltv}" class="form-control LTV"
+								style="width: 8em" required pattern="^[0-9]*$" min=0 max=200></td>
+
+							<td><input type="number" id="tenure_0"
+								th:field="*{asset[0].tenure}" class="form-control Tenure"
+								style="width: 8em" required pattern="^[0-9]*$" min=0 max=3650></td>
+							
+								 <td></td>
+							<!-- <td><button type="button" class="btn btn-danger delete"
+								id="delete" name="delete"">-</button></td> -->
+						</tr>
+
+					</tbody>
+				</table>
+				<br>
+				<button type="submit" class="btn btn-info" style="width: 10em;"
+					id="save" name="save">Submit</button>
+				<br> <br>
+			</form>
+		</div>
+	</div>
+
+	<script>
+	
+	function table()
+	{
+	var empTab = document.getElementById('table');
+	var rowCnt = (empTab.rows.length)-1;
+	var sec_val=[];
+	for(var i=0;i<rowCnt;i++){
+	    var sec_val_var=$('#asset_'+i).val();
+		 sec_val.push(sec_val_var);
+	    	    }
+	
+	 $('#table tr:last').after('<tr><td><select id="asset_'+rowCnt+'" th:field="*{asset['+rowCnt+'].assetname}" class="form-control selectassets" style="width: 14em" name="asset['+rowCnt+'].assetname"></select></td><td><input type="number" name="asset['+rowCnt+'].value" id="amt_'+rowCnt+'" th:field="*{asset['+rowCnt+'].value}" class="form-control Value" style="width: 8em" required pattern="^[0-9]*$" min=0></td><td><input type="number" step=any name="asset['+rowCnt+'].rate" id="rate_'+rowCnt+'" th:field="*{asset['+rowCnt+'].rate}" class="form-control Rate"  style="width: 8em;" pattern="^[0-9]*$" min=0></td><td><input type="number" name="asset['+rowCnt+'].ltv" id="ltv_'+rowCnt+'" step=any th:field="*{asset['+rowCnt+'].ltv}" class="form-control LTV" style="width: 8em" required pattern="^[0-9]*$" min=0></td><td><input type="number"  name="*{asset['+rowCnt+'].tenure}" id="tenure_'+rowCnt+'" th:field="*{asset['+rowCnt+'].tenure}" class="form-control Tenure" style="width: 8em" required pattern="^[0-9]*$" min=0></td><td><button type="button" class="btn btn-danger delete" "id="remove_'+rowCnt+'" name="save">-</button></td></tr>');	//$('#tablebody').append(row);
+
+	$.ajax({
+	         type : "POST",
+	         url : "/api/asset/",
+	         async : false,
+	         success: function (data) {
+	        var List = JSON.parse(data);
+	             $('#asset_'+rowCnt).empty();
+	             $('#asset_'+rowCnt).append('<option value="">Select</option>');
+	             for (i in List ) {
+	                 $('#asset_'+rowCnt).append('<option value="' + List[i].id + '">' + List[i].assetName + '</option>');
+	             }
+	             for (j in List) {
+	                 for(i=0;i<sec_val.length;i++){
+	                     var selected=sec_val[i];
+	                     var optionid=List[j].id;
+	                    // alert(selected+"selected");
+	                    // alert(optionid+"optionid");
+	                    
+	                     if((selected) == (optionid)){
+	                         
+	                         $("#asset_"+rowCnt+" option[value='"+selected+"']").remove();
+
+	     
+
+	                 }
+	         }
+	             }
+	         }
+	       });
+	}
+	
+	// DELETE TABLE ROW.
+	
+	$("#table").on("click", ".delete", function() {
+		var empTab = document.getElementById('table');
+		var rowCnt = (empTab.rows.length)-1;
+		alert("efre");
+ 		var w =rowCnt-1;
+ 		$('#add_'+w).show();
+ 		$( "p" ).parent( ".selected" ).show();
+	     $(this).closest("tr").remove();
+	    
+	});
+	
+	$(document).on('keyup','.Value',function(){
+    	if($(this).val()>999999999999999){
+    		$(this).val(99999999999999);
+    	}else if($(this).val()<0){
+    		$(this).val(0);
+    	}
+    });
+    $(document).on('keyup','.Rate',function(){
+    	if($(this).val()>100){
+    		$(this).val(100);
+    		alert("please Enter the Rate Between 0 to 100");
+    	}else if($(this).val()<0){
+    		$(this).val(0);
+    	}
+    });
+    $(document).on('keyup','.LTV',function(){
+    	if($(this).val()>200){
+    		$(this).val(200);
+    		alert("please Enter the LTV Between 0 to 200");
+    	}else if($(this).val()<0){
+    		$(this).val(0);
+    	}
+    });
+    $(document).on('keyup','.Tenure',function(){
+    	if($(this).val()>3650){
+    		$(this).val(3650);
+    		alert("please Enter the Tenure Between 0 to 3650");
+    	}else if($(this).val()<0){
+    		$(this).val(0);
+    	}
+    });
+    
+
+	 	/* 	if(rowCnt == 1){
+	 			 
+	 		}
+	 		else{
+	 			 $(this).show();
+	 
+	    });
+	
+		/* $(document).ready(function(){ 
+			$('#asset0').click(function() {
+		$.ajax({
+		    type: "GET",
+		    url:"/api/asset/",
+		    dataType: "json",
+		    success: function (data) {
+		        $.each(data.assetName,function(i,obj)
+		        {
+		         alert(data.id+":"+data.assetName);
+		         var div_data="<option value="+ data.id+">"+data.assetName +"</option>";
+		        alert(div_data);
+		        $(div_data).appendTo('#asset01'); 
+		        });  
+		        }
+		  });
+			});
+		});
+		}); */
+
+	/* 	$(document).ready(
+				function() {
+					$.ajax({
+						type : "GET",
+						url : "/api/asset/",
+						dataType : "json",
+						contentType : "application/json; charset=utf-8",
+						success : function(result) {
+							$('.DropDown').empty();
+							$('.DropDown').append(
+									"<option value='0'>---Select---</option>");
+							$.each(result.d, function(key, value) {
+								$('.DropDown').append(
+										$("<option></option>").val(value.id)
+												.html(value.assetName));
+							});
+						}
+					});
+				}); */
+		//var List;
+		//$('#asset0').click(function() {
+	//	$(document).on('click','#asset0',function(){
+		
+	/* 	$.ajax({
+			type : "POST",
+			url : "/api/asset/",
+			async : false,
+		    success: function (data) {
+		   var List = JSON.parse(data);
+		        $('.DropDown').empty();
+		        $('.DropDown').append('<option value="">Select</option>');
+		        for (i in List ) {
+		            $('.DropDown').append('<option value="' + List[i].id + '">' + List[i].assetName + '</option>');
+		        }
+		    }
+		  }); */
+		//});
+
+		//atleast one checkbox should be selected
+		/* $("#save")
+				.click(
+						function() {
+							if ($('#table').find(
+									'input[type=checkbox]:checked').length == 0) {
+								alert('Please select atleast one Assets');
+								return false;
+							}
+						}); */
+
+	/* 	//date and time
+		var date = new Date().toDateString();
+		document.getElementById("date").innerHTML = date;
+
+		$(document).ready(function() {
+			$(this).scrollTop(0);
+		}); */
+	</script>
+
+</body>
+
+
+</html>
